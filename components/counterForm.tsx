@@ -19,8 +19,11 @@ const CounterForm: React.FC<Props> = ({ handleCounterChange }) => {
   }, [selectedOption, handleCounterChange]);
 
   return (
-    <div>
-      <select value={selectedOption} onChange={handleSelectChange}>
+    <div className="text-lg">
+      <select 
+      className="border rounded-lg p-2.5"
+      value={selectedOption} 
+      onChange={handleSelectChange}>
         {options.map((option) => (
           <option key={option} value={option}>
             {option}
