@@ -31,6 +31,7 @@ const Home = () => {
   const [continent, setContinent] = useState<string>("AF");
   const [numCountries, setNumCountries] = useState<number>(2);
   const [countryDetails, setCountryDetails] = useState<Country[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const continentList = {
     AF: "Africa",
@@ -56,6 +57,7 @@ const Home = () => {
 
   const handleRandomCountries = () => {
     if (data) {
+      setIsLoading(true);
       // This code handes the shuffling of the Data gained from the GRAPHQL
       const shuffledCountries = [...data.countries].sort(
         () => 0.5 - Math.random()
@@ -72,7 +74,11 @@ const Home = () => {
         )
       )
         .then((responses) => Promise.all(responses.map((res) => res.json())))
-        .then((countryDetails) => setCountryDetails(countryDetails));
+        .then((countryDetails) => {
+          setCountryDetails(countryDetails);
+          setIsLoading(false);
+        })
+        .catch(() => setIsLoading(false));  
     }
   };
 
@@ -95,7 +101,7 @@ const Home = () => {
       </div>
       <form className="flex flex-col text-center" onSubmit={handleSubmit}>
         <FormLayout>
-          <p className="text-base">Choose a number between 2-10</p>
+          <p className="text-base text-gray-500">Choose a number between 2-10</p>
           <div className="text-2xl">
             <h2>HOW MANY</h2>
             <h2>COUNTRIES</h2>
@@ -104,16 +110,20 @@ const Home = () => {
         </FormLayout>
 
         <FormLayout>
-          <p className="text-base">Choose a Continent</p>
+          <p className="text-base text-gray-500">Choose a Continent</p>
           <div className="text-2xl"> 
             <h2>WHICH</h2>
             <h2>CONTINENT</h2>
           </div>
           <ContinentForm handleContinentChange={handleContinentChange} continentList={continentList} />
         </FormLayout>
+    
+        <button className="self-center text-4xl bg-transparent hover:bg-[#26B865] text-[#26B865] font-semibold hover:text-white py-2 px-4 border border-[#26B865] hover:border-transparent rounded w-2/3 sm:w-1/4 mt-9 transition-all" type="submit">Submit</button>       
+        </form>
 
-        <button className="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded w-full mt-9" type="submit">Submit</button> 
-      </form>
+        {isLoading && (
+      <p className="text-center text-2xl my-6">Loading...</p>
+    )}
       <CountryCardGrid>
         {countryDetails.map((country) => (
           <CountryCard 
