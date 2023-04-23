@@ -27,7 +27,7 @@ type Country = {
 };
 
 const Home = () => {
-  const [continent, setContinent] = useState<string>("");
+  const [continent, setContinent] = useState<string>("AF");
   const [numCountries, setNumCountries] = useState<number>(2);
   const [countryDetails, setCountryDetails] = useState<Country[]>([]);
 

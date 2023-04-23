@@ -8,7 +8,7 @@ type Props = {
 
 const ContinentForm: React.FC<Props> = ({ handleContinentChange, continentList }) => {
 
-    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedOption, setSelectedOption] = useState('AF');
 
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       setSelectedOption(event.target.value);
@@ -22,7 +22,6 @@ const ContinentForm: React.FC<Props> = ({ handleContinentChange, continentList }
     return (
         <div>
         <select value={selectedOption} onChange={handleSelectChange}>
-          <option value=""> ~Select a Continent~ </option>
           {Object.entries(continentList).map(([key, continentName]) => ( // IN this mapping we're getting each key and their values from the parent dict
             <option key={key} value={key}>
               {continentName}
