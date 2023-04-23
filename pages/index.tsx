@@ -4,7 +4,7 @@ import { GET_COUNTRIES_BY_CONTINENT } from "@/lib/countriesQueries";
 import ContinentForm from "@/components/continentForm";
 import CounterForm from "@/components/counterForm";
 import CountryCard from "@/components/countryCard";
-
+import CountryCardGrid from "@/components/countryCardGrid";
 
 type Language = {
   name: string;
@@ -93,17 +93,17 @@ const Home = () => {
         <CounterForm handleCounterChange={handleCounterChange} />
         <button type="submit">Submit</button> 
       </form>
-      {countryDetails.map((country) => (
-        <CountryCard 
-        key={country.alpha2Code}
-        countryName={country.name}
-        countryRegion={country.region}
-        countryCapital={country.capital ?? ['No Capital']}
-        countryLanguages={country.languages?.map((language) => language.name) ?? ['No languages']}
-        countryCurrencies={country.currencies?.map(currency => currency.name) ?? ['No currency']} />
-      ))}
-
-
+      <CountryCardGrid>
+        {countryDetails.map((country) => (
+          <CountryCard 
+          key={country.alpha2Code}
+          countryName={country.name}
+          countryRegion={country.region}
+          countryCapital={country.capital ?? ['No Capital']}
+          countryLanguages={country.languages?.map((language) => language.name) ?? ['No languages']}
+          countryCurrencies={country.currencies?.map(currency => currency.name) ?? ['No currency']} />
+        ))}
+      </CountryCardGrid>
     </>
   ) 
 };
