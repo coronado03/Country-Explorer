@@ -82,6 +82,12 @@ const Home = () => {
     }
   };
 
+  const sortedCountryDetails = countryDetails.sort((a, b) => {  //Sorting the sortedCountry in alphabetical order
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  });
+
   // Will be used in the future on the submit button of the form
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     console.log(typeof countryDetails[1])
@@ -125,7 +131,7 @@ const Home = () => {
       <p className="text-center text-2xl my-6">Loading...</p>
     )}
       <CountryCardGrid>
-        {countryDetails.map((country) => (
+        {sortedCountryDetails.map((country) => (
           <CountryCard 
           key={country.alpha2Code}
           countryName={country.name}
