@@ -5,6 +5,7 @@ import ContinentForm from "@/components/continentForm";
 import CounterForm from "@/components/counterForm";
 import CountryCard from "@/components/countryCard";
 import CountryCardGrid from "@/components/countryCardGrid";
+import FormLayout from "@/components/formLayout";
 
 type Language = {
   name: string;
@@ -88,9 +89,25 @@ const Home = () => {
   return(
     <>
     
-      <form onSubmit={handleSubmit}>
-        <ContinentForm handleContinentChange={handleContinentChange} continentList={continentList} />
-        <CounterForm handleCounterChange={handleCounterChange} />
+      <form className="flex flex-col" onSubmit={handleSubmit}>
+        <FormLayout>
+          <p>Choose a country betwee 2-10</p>
+          <div>
+            <h2>HOW MANY</h2>
+            <h2>COUNTRIES</h2>
+          </div>
+          <CounterForm handleCounterChange={handleCounterChange} />
+        </FormLayout>
+
+        <FormLayout>
+          <p>Choose a Continent</p>
+          <div> 
+            <h2>WHICH</h2>
+            <h2>CONTINENT</h2>
+          </div>
+          <ContinentForm handleContinentChange={handleContinentChange} continentList={continentList} />
+        </FormLayout>
+
         <button type="submit">Submit</button> 
       </form>
       <CountryCardGrid>
