@@ -6,16 +6,16 @@ type Props = {
 };
 
 const CounterForm: React.FC<Props> = ({ handleCounterChange }) => {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState(2);
   const options = [2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedOption(event.target.value);
+    setSelectedOption(parseInt(event.target.value, 10));
   };
 
   useEffect(() => {
     console.log(`Selected option: ${selectedOption}`); //We'll also console.log the result! The same way we did on the continentForm compoent
-    //handleCounterChange(selectedOption);     ~The handleCOunter function will provide the Continent to the father component~
+    handleCounterChange(selectedOption);    // The handleCOunter function will provide the number to the father component
   }, [selectedOption, handleCounterChange]);
 
   return (

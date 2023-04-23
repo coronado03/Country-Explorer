@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { GET_COUNTRIES_BY_CONTINENT } from "@/lib/countriesQueries";
 import ContinentForm from "@/components/continentForm";
 import CounterForm from "@/components/counterForm";
+import CountryCard from "@/components/countryCard";
 
 
 type Country = {
@@ -78,9 +79,18 @@ const Home = () => {
       <form onSubmit={handleSubmit}>
         <ContinentForm handleContinentChange={handleContinentChange} continentList={continentList} />
         <CounterForm handleCounterChange={handleCounterChange} />
-        <button type="submit">Submit</button>
-        
+        <button type="submit">Submit</button> 
       </form>
+      {countryDetails.map((country) => (
+        <CountryCard 
+        key={country.alpha2Code}
+        countryName={country.name}
+        countryRegion={country.region}
+        countryCapital={country.capital}
+        countryLanguages={country.languages.map(language => language.name)}
+        countryCurrencies={country.currencies?.map(currency => currency.name) ?? ['No currency']} />
+      ))}
+
 
     </>
   ) 
