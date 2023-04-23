@@ -88,11 +88,14 @@ const Home = () => {
 
   return(
     <>
-    
+      <div className="my-6">
+        <h1 className="text-5xl">Country Explorer</h1>
+        <p className="text-xl">The app to get in touch with the world!</p>
+      </div>
       <form className="flex flex-col" onSubmit={handleSubmit}>
         <FormLayout>
-          <p>Choose a country betwee 2-10</p>
-          <div>
+          <p className="text-base">Choose a number between 2-10</p>
+          <div className="text-2xl">
             <h2>HOW MANY</h2>
             <h2>COUNTRIES</h2>
           </div>
@@ -100,15 +103,15 @@ const Home = () => {
         </FormLayout>
 
         <FormLayout>
-          <p>Choose a Continent</p>
-          <div> 
+          <p className="text-base">Choose a Continent</p>
+          <div className="text-2xl"> 
             <h2>WHICH</h2>
             <h2>CONTINENT</h2>
           </div>
           <ContinentForm handleContinentChange={handleContinentChange} continentList={continentList} />
         </FormLayout>
 
-        <button type="submit">Submit</button> 
+        <button className="mt-5 px-5 border-2 rounded-lg w-2/4" type="submit">Submit</button> 
       </form>
       <CountryCardGrid>
         {countryDetails.map((country) => (
