@@ -22,6 +22,8 @@ This will start the development server and launch the application in your defaul
 
 Once the application is running, you can select a continent from the dropdown menu and specify the number of countries you would like to generate using the input field. Click the "Submit" button to generate a random list of countries based on your selections.
 
+![Screenshot of Country Explorer](/public/images/appscreenshot.png "Country Explorer Screenshot")
+
 ## Technologies Used
 
 The application was mainly built using the following technologies:
