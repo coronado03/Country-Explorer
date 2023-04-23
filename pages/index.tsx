@@ -88,11 +88,11 @@ const Home = () => {
 
   return(
     <>
-      <div className="my-6">
+      <div className="my-6 text-center">
         <h1 className="text-5xl">Country Explorer</h1>
         <p className="text-xl">The app to get in touch with the world!</p>
       </div>
-      <form className="flex flex-col" onSubmit={handleSubmit}>
+      <form className="flex flex-col text-center" onSubmit={handleSubmit}>
         <FormLayout>
           <p className="text-base">Choose a number between 2-10</p>
           <div className="text-2xl">
