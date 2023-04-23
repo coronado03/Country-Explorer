@@ -21,6 +21,7 @@ type Country = {
   capital: string;
   population: number;
   flag: string;
+  subregion:string;
   region: string;
   languages?: Language[];
   currencies: Currency[];
@@ -119,6 +120,9 @@ const Home = () => {
           key={country.alpha2Code}
           countryName={country.name}
           countryRegion={country.region}
+          countrySubregion={country.subregion}
+          countryPopulation={country.population}
+          countryFlag={country.flag}
           countryCapital={country.capital ?? ['No Capital']}
           countryLanguages={country.languages?.map((language) => language.name) ?? ['No languages']}
           countryCurrencies={country.currencies?.map(currency => currency.name) ?? ['No currency']} />
