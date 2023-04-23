@@ -1,6 +1,19 @@
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_COUNTRIES_BY_CONTINENT } from "@/lib/countriesQueries";
+import ContinentForm from "@/components/continentForm";
+import CounterForm from "@/components/counterForm";
+import CountryCard from "@/components/countryCard";
+import CountryCardGrid from "@/components/countryCardGrid";
+import FormLayout from "@/components/formLayout";
+
+type Language = {
+  name: string;
+};
+
+type Currency = {
+  name: string;
+};
 
 type Country = {
   alpha2Code: string;
@@ -8,12 +21,32 @@ type Country = {
   capital: string;
   population: number;
   flag: string;
+  region: string;
+  languages?: Language[];
+  currencies: Currency[];
 };
 
 const Home = () => {
   const [continent, setContinent] = useState<string>("");
   const [numCountries, setNumCountries] = useState<number>(2);
   const [countryDetails, setCountryDetails] = useState<Country[]>([]);
+
+  const continentList = {
+    AF: "Africa",
+    AN: "Antarctica",
+    AS: "Asia",
+    EU: "Europe",
+    NA: "North America",
+    OC: "Oceania",
+    SA: "South America",
+  };
+
+  const handleContinentChange = (value: string) => {
+      setContinent(value)
+  }
+  const handleCounterChange = (value: number) => {
+    setNumCountries(value)
+}
 
   //Using the useQuery hook we get the needed data, passing continent as a parameter
   const { data } = useQuery(GET_COUNTRIES_BY_CONTINENT, {
@@ -44,23 +77,50 @@ const Home = () => {
 
   // Will be used in the future on the submit button of the form
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    console.log(typeof countryDetails[1])
     e.preventDefault();
-    const numCountriesInput = e.currentTarget.elements.namedItem(
-      "numCountries"
-    ) as HTMLInputElement;
-    setNumCountries(Number(numCountriesInput.value));
+    const numCountriesInput = e.currentTarget.elements.namedItem("numCountries") as HTMLInputElement;
+    if (numCountriesInput) {
+      setNumCountries(Number(numCountriesInput.value));
+    }
     handleRandomCountries();
   };
 
   return(
     <>
     
-      <form onSubmit={handleSubmit}>
+      <form className="flex flex-col" onSubmit={handleSubmit}>
+        <FormLayout>
+          <p>Choose a country betwee 2-10</p>
+          <div>
+            <h2>HOW MANY</h2>
+            <h2>COUNTRIES</h2>
+          </div>
+          <CounterForm handleCounterChange={handleCounterChange} />
+        </FormLayout>
 
-        <button type="submit">Submit</button>
-        
+        <FormLayout>
+          <p>Choose a Continent</p>
+          <div> 
+            <h2>WHICH</h2>
+            <h2>CONTINENT</h2>
+          </div>
+          <ContinentForm handleContinentChange={handleContinentChange} continentList={continentList} />
+        </FormLayout>
+
+        <button type="submit">Submit</button> 
       </form>
-
+      <CountryCardGrid>
+        {countryDetails.map((country) => (
+          <CountryCard 
+          key={country.alpha2Code}
+          countryName={country.name}
+          countryRegion={country.region}
+          countryCapital={country.capital ?? ['No Capital']}
+          countryLanguages={country.languages?.map((language) => language.name) ?? ['No languages']}
+          countryCurrencies={country.currencies?.map(currency => currency.name) ?? ['No currency']} />
+        ))}
+      </CountryCardGrid>
     </>
   ) 
 };
