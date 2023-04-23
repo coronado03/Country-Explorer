@@ -6,12 +6,23 @@ import CounterForm from "@/components/counterForm";
 import CountryCard from "@/components/countryCard";
 
 
+type Language = {
+  name: string;
+};
+
+type Currency = {
+  name: string;
+};
+
 type Country = {
   alpha2Code: string;
   name: string;
   capital: string;
   population: number;
   flag: string;
+  region: string;
+  languages?: Language[];
+  currencies: Currency[];
 };
 
 const Home = () => {
@@ -65,6 +76,7 @@ const Home = () => {
 
   // Will be used in the future on the submit button of the form
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    console.log(typeof countryDetails[1])
     e.preventDefault();
     const numCountriesInput = e.currentTarget.elements.namedItem("numCountries") as HTMLInputElement;
     if (numCountriesInput) {
@@ -86,8 +98,8 @@ const Home = () => {
         key={country.alpha2Code}
         countryName={country.name}
         countryRegion={country.region}
-        countryCapital={country.capital}
-        countryLanguages={country.languages.map(language => language.name)}
+        countryCapital={country.capital ?? ['No Capital']}
+        countryLanguages={country.languages?.map((language) => language.name) ?? ['No languages']}
         countryCurrencies={country.currencies?.map(currency => currency.name) ?? ['No currency']} />
       ))}
 
