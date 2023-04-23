@@ -19,10 +19,10 @@ const CountryCard: React.FC<Props> = ({countryName, countryRegion, countrySubreg
       <div className='flex flex-col mt-5 border-4 border-black shadow-md rounded-lg gap-5 w-full'>
         <div className='flex flex-col text-center mt-5'>
           <h1 className='text-5xl'>{countryName}</h1>
+          <h5 className='text-xl'>{countryRegion}, {countrySubregion}</h5>
           <div className='w-1/2 self-center mt-4 border border-black'>       
             <img className='w-fit' src={countryFlag} alt=''></img>
           </div>
-          <h5 className='text-xl'>{countryRegion}, {countrySubregion}</h5>
         </div>
         <div className='mb-5 mx-auto'>   
           <p><b>Capital: </b>{countryCapital}</p>
