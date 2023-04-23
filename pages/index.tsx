@@ -29,7 +29,7 @@ const Home = () => {
       const countryCodes = shuffledCountries
         .slice(0, numCountries)
         .map((country) => country.code);
-        
+
 
       //In this part of the code we get all of the specific countries    (Might refactor later for efficiency purposes)
       Promise.all(
@@ -54,6 +54,12 @@ const Home = () => {
 
   return(
     <>
+    
+      <form onSubmit={handleSubmit}>
+
+        <button type="submit">Submit</button>
+        
+      </form>
 
     </>
   ) 
