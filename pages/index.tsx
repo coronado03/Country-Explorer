@@ -31,6 +31,9 @@ const Home = () => {
   const handleContinentChange = (value: string) => {
       setContinent(value)
   }
+  const handleCounterChange = (value: number) => {
+    setNumCountries(value)
+}
 
   //Using the useQuery hook we get the needed data, passing continent as a parameter
   const { data } = useQuery(GET_COUNTRIES_BY_CONTINENT, {
@@ -62,10 +65,10 @@ const Home = () => {
   // Will be used in the future on the submit button of the form
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const numCountriesInput = e.currentTarget.elements.namedItem(
-      "numCountries"
-    ) as HTMLInputElement;
-    setNumCountries(Number(numCountriesInput.value));
+    const numCountriesInput = e.currentTarget.elements.namedItem("numCountries") as HTMLInputElement;
+    if (numCountriesInput) {
+      setNumCountries(Number(numCountriesInput.value));
+    }
     handleRandomCountries();
   };
 
@@ -74,6 +77,7 @@ const Home = () => {
     
       <form onSubmit={handleSubmit}>
         <ContinentForm handleContinentChange={handleContinentChange} continentList={continentList} />
+        <CounterForm handleCounterChange={handleCounterChange} />
         <button type="submit">Submit</button>
         
       </form>
