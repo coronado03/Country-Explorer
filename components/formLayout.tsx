@@ -6,7 +6,7 @@ type Props = {
 
 function FormLayout({ children }: Props) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2 mt-6">
       {children}
     </div>
   );

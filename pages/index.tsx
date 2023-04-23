@@ -27,7 +27,7 @@ type Country = {
 };
 
 const Home = () => {
-  const [continent, setContinent] = useState<string>("");
+  const [continent, setContinent] = useState<string>("AF");
   const [numCountries, setNumCountries] = useState<number>(2);
   const [countryDetails, setCountryDetails] = useState<Country[]>([]);
 
@@ -88,11 +88,14 @@ const Home = () => {
 
   return(
     <>
-    
-      <form className="flex flex-col" onSubmit={handleSubmit}>
+      <div className="my-6 text-center">
+        <h1 className="text-5xl">Country Explorer</h1>
+        <p className="text-xl">The app to get in touch with the world!</p>
+      </div>
+      <form className="flex flex-col text-center" onSubmit={handleSubmit}>
         <FormLayout>
-          <p>Choose a country betwee 2-10</p>
-          <div>
+          <p className="text-base">Choose a number between 2-10</p>
+          <div className="text-2xl">
             <h2>HOW MANY</h2>
             <h2>COUNTRIES</h2>
           </div>
@@ -100,15 +103,15 @@ const Home = () => {
         </FormLayout>
 
         <FormLayout>
-          <p>Choose a Continent</p>
-          <div> 
+          <p className="text-base">Choose a Continent</p>
+          <div className="text-2xl"> 
             <h2>WHICH</h2>
             <h2>CONTINENT</h2>
           </div>
           <ContinentForm handleContinentChange={handleContinentChange} continentList={continentList} />
         </FormLayout>
 
-        <button type="submit">Submit</button> 
+        <button className="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded w-full mt-9" type="submit">Submit</button> 
       </form>
       <CountryCardGrid>
         {countryDetails.map((country) => (
