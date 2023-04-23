@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_COUNTRIES_BY_CONTINENT } from "@/lib/countriesQueries";
+import ContinentForm from "@/components/continentForm";
+import CounterForm from "@/components/counterForm";
+
 
 type Country = {
   alpha2Code: string;
@@ -14,6 +17,20 @@ const Home = () => {
   const [continent, setContinent] = useState<string>("");
   const [numCountries, setNumCountries] = useState<number>(2);
   const [countryDetails, setCountryDetails] = useState<Country[]>([]);
+
+  const continentList = {
+    AF: "Africa",
+    AN: "Antarctica",
+    AS: "Asia",
+    EU: "Europe",
+    NA: "North America",
+    OC: "Oceania",
+    SA: "South America",
+  };
+
+  const handleContinentChange = (value: string) => {
+      setContinent(value)
+  }
 
   //Using the useQuery hook we get the needed data, passing continent as a parameter
   const { data } = useQuery(GET_COUNTRIES_BY_CONTINENT, {
@@ -56,7 +73,7 @@ const Home = () => {
     <>
     
       <form onSubmit={handleSubmit}>
-
+        <ContinentForm handleContinentChange={handleContinentChange} continentList={continentList} />
         <button type="submit">Submit</button>
         
       </form>

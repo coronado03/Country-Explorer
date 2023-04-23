@@ -16,7 +16,7 @@ const ContinentForm: React.FC<Props> = ({ handleContinentChange, continentList }
 
     useEffect(() => {
         console.log(`Selected option: ${selectedOption}`); //We'll also console.log the result!
-        //handleContinentChange(selectedOption);     ~The handleContinent function will provide the Continent to the father component~
+        handleContinentChange(selectedOption);    // This is a callback function that passes data to the parent!
       }, [selectedOption, handleContinentChange]);
 
     return (
