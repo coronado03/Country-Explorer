@@ -112,8 +112,8 @@ const Home = () => {
           <ContinentForm handleContinentChange={handleContinentChange} continentList={continentList} />
         </FormLayout>
 
-        <button className="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded w-full mt-9" type="submit">Submit</button> 
-      </form>
+        <button className="self-center text-4xl bg-transparent hover:bg-[#26B865] text-[#26B865] font-semibold hover:text-white py-2 px-4 border border-[#26B865] hover:border-transparent rounded w-2/3 sm:w-1/4 mt-9 transition-all" type="submit">Submit</button>       
+        </form>
       <CountryCardGrid>
         {countryDetails.map((country) => (
           <CountryCard 
