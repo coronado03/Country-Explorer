@@ -21,7 +21,7 @@ const CounterForm: React.FC<Props> = ({ handleCounterChange }) => {
   return (
     <div className="text-lg">
       <select 
-      className="border rounded-lg p-2.5"
+      className="border text-xl px-4 py-2 shadow border-[#26B865] rounded"
       value={selectedOption} 
       onChange={handleSelectChange}>
         {options.map((option) => (

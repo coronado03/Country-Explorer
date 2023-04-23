@@ -21,7 +21,7 @@ const ContinentForm: React.FC<Props> = ({ handleContinentChange, continentList }
 
     return (
         <div>
-        <select className='text-xl px-4 py-2 border shadow  border-[#26B865] rounded' value={selectedOption} onChange={handleSelectChange}>
+        <select className='text-xl px-4 py-2 border shadow border-[#26B865] rounded' value={selectedOption} onChange={handleSelectChange}>
           {Object.entries(continentList).map(([key, continentName]) => ( // IN this mapping we're getting each key and their values from the parent dict
             <option key={key} value={key}>
               {continentName}
